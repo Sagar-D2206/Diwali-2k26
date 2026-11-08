@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Happy Diwali – wishes from Dhanwani Sagar</title>
+<meta property="og:title" content="A Diwali wish is waiting for you">
+<meta property="og:description" content="Tap the diya to light it. With love, Dhanwani Sagar.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Yatra+One&family=Hind:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --night:#14103A; --deep:#241A5C; --marigold:#F5A623; --rani:#D81B72;
+  --clay:#B5542B; --cream:#FFF3D6;
+  --display:"Yatra One",Georgia,serif; --body:"Hind",system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0}
+html,body{height:100%}
+body{
+  background:radial-gradient(120% 90% at 50% 100%,var(--deep) 0%,var(--night) 60%);
+  color:var(--cream);font-family:var(--body);font-size:1.0625rem;line-height:1.55;
+  overflow-x:hidden;
+  padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+}
+#fx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none}
+main{position:relative;min-height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.25rem;padding:2rem 1.25rem;text-align:center}
+[hidden]{display:none!important}
+
+/* diya */
+#diya{background:none;border:0;cursor:pointer;width:min(260px,62vw);border-radius:50%;position:relative}
+#diya:focus-visible,.btn:focus-visible,input:focus-visible{outline:3px solid var(--marigold);outline-offset:4px}
+#diya svg{width:100%;height:auto;display:block;overflow:visible}
+#glow{position:absolute;left:50%;top:22%;width:150%;aspect-ratio:1;transform:translate(-50%,-50%) scale(.1);
+  background:radial-gradient(circle,rgba(245,166,35,.55),rgba(216,27,114,.18) 45%,transparent 70%);
+  opacity:0;transition:transform 1.4s cubic-bezier(.2,.7,.2,1),opacity 1.2s;pointer-events:none}
+#flame{transform-origin:100px 60px;transform:scale(0);opacity:0;transition:transform .7s cubic-bezier(.3,1.6,.5,1),opacity .4s}
+.lit #flame{transform:scale(1);opacity:1;animation:flicker 1.6s ease-in-out .7s infinite}
+.lit #glow{transform:translate(-50%,-50%) scale(1);opacity:1}
+@keyframes flicker{0%,100%{transform:scale(1,1) rotate(0)}30%{transform:scale(.94,1.06) rotate(-2deg)}60%{transform:scale(1.04,.97) rotate(2deg)}}
+
+.hint{color:var(--marigold);font-family:var(--display);font-size:1.25rem;transition:opacity .4s}
+.lit .hint{opacity:0;height:0;overflow:hidden}
+
+/* reveal */
+#reveal{max-width:34rem;opacity:0;transform:translateY(12px);transition:opacity 1s .9s,transform 1s .9s}
+.lit #reveal{opacity:1;transform:none}
+.greet{font-family:var(--display);font-size:1.5rem;color:var(--marigold)}
+.name{font-family:var(--display);font-size:clamp(2.6rem,12vw,5rem);line-height:1.05;color:var(--cream);
+  text-shadow:0 0 28px rgba(245,166,35,.7);overflow-wrap:anywhere;margin:.25rem 0 .75rem}
+.wish{max-width:28rem;margin:0 auto 1.25rem}
+.from{font-family:var(--display);font-size:1.5rem;color:var(--rani);
+  text-shadow:0 0 14px rgba(216,27,114,.45)}
+.from small{display:block;font-family:var(--body);font-size:1rem;color:var(--cream);opacity:.8;text-shadow:none}
+
+/* buttons + creator */
+.btn{font:600 1rem var(--body);padding:.8rem 1.4rem;border-radius:999px;border:2px solid var(--marigold);
+  background:var(--marigold);color:var(--night);cursor:pointer;text-decoration:none;display:inline-block}
+.btn.ghost{background:transparent;color:var(--marigold)}
+.btn:hover{filter:brightness(1.08)}
+.row{display:flex;flex-wrap:wrap;gap:.75rem;justify-content:center}
+.make{margin-top:1.5rem;font-size:.95rem}
+.make a{color:var(--marigold)}
+h1.title{font-family:var(--display);font-weight:400;font-size:clamp(1.9rem,7vw,2.8rem);line-height:1.15;max-width:22rem}
+label{display:block;text-align:left;font-weight:600;margin-bottom:.35rem}
+input{width:100%;font:inherit;font-size:1.15rem;padding:.8rem 1rem;border-radius:12px;border:2px solid #5a4aa8;
+  background:rgba(255,243,214,.08);color:var(--cream)}
+.form{width:min(24rem,100%);display:grid;gap:1rem}
+#out{width:100%;display:grid;gap:.75rem}
+#out input{font-size:.95rem}
+#toast{min-height:1.4em;color:var(--marigold);font-size:.95rem}
+@media (prefers-reduced-motion:reduce){
+  *{transition-duration:.01ms!important;animation:none!important}
+}
+</style>
+</head>
+<body>
+<canvas id="fx" aria-hidden="true"></canvas>
+
+<!-- Receiver view: opened from a shared link -->
+<main id="receiver" hidden>
+  <div id="stage">
+    <button id="diya" type="button" aria-label="Light the diya">
+      <span id="glow"></span>
+      <svg viewBox="0 0 200 170" aria-hidden="true">
+        <g id="flame">
+          <path d="M100 8 C122 36 126 52 100 66 C74 52 78 36 100 8Z" fill="#F5A623"/>
+          <path d="M100 26 C112 42 113 52 100 62 C87 52 88 42 100 26Z" fill="#FFF3D6"/>
+        </g>
+        <rect x="97" y="62" width="6" height="16" rx="3" fill="#3a2a1c"/>
+        <path d="M14 82 H186 C186 128 150 156 100 156 C50 156 14 128 14 82Z" fill="#B5542B"/>
+        <path d="M14 82 H186 C185 90 182 96 178 101 H22 C18 96 15 90 14 82Z" fill="#D9743C"/>
+        <path d="M40 118 Q100 140 160 118" fill="none" stroke="#F5A623" stroke-width="3" stroke-dasharray="2 9" stroke-linecap="round"/>
+        <ellipse cx="100" cy="82" rx="86" ry="7" fill="#7a2f14"/>
+      </svg>
+    </button>
+  </div>
+  <p class="hint" id="hint">Tap the diya to light it</p>
+  <section id="reveal" aria-live="polite">
+    <p class="greet">Happy Diwali,</p>
+    <h1 class="name" id="rname"></h1>
+    <p class="wish">May this festival of lights fill your home with warmth, your days with joy, and your year with good fortune. Shubh Deepavali!</p>
+    <p class="from"><small>With love,</small>Dhanwani Sagar</p>
+  </section>
+</main>
+
+<!-- Creator view: no ?to= in the address -->
+<main id="creator" hidden>
+  <h1 class="title">Send a Diwali wish with their name on it</h1>
+  <div class="form">
+    <div>
+      <label for="nameIn">Who is it for?</label>
+      <input id="nameIn" type="text" maxlength="40" placeholder="Their name" autocomplete="off">
+    </div>
+    <button class="btn" id="make" type="button">Create link</button>
+    <div id="out" hidden>
+      <input id="linkOut" type="text" readonly aria-label="Your shareable link">
+      <div class="row">
+        <button class="btn ghost" id="copy" type="button">Copy link</button>
+        <a class="btn" id="wa" target="_blank" rel="noopener">Share on WhatsApp</a>
+        <a class="btn ghost" id="preview" target="_blank" rel="noopener">Preview</a>
+      </div>
+    </div>
+    <p id="toast" role="status"></p>
+  </div>
+</main>
+
+<script>
+(function(){
+  var SENDER = "Dhanwani Sagar";
+  var base = location.href.split("#")[0].split("?")[0];
+  var params = new URLSearchParams(location.search);
+  var PREFIX = "happy-diwali-";
+  var to = "";
+  try {
+    var h = decodeURIComponent(location.hash.slice(1));
+    if (h.toLowerCase().indexOf(PREFIX) === 0){
+      to = h.slice(PREFIX.length).replace(/[-_]+/g, " ");
+      to = to.replace(/(^|\s)(\S)/g, function(m, a, b){ return a + b.toUpperCase(); });
+    }
+  } catch (e) {}
+  if (!to) to = (params.get("to") || "");
+  to = to.trim().replace(/\s+/g, " ").slice(0, 40);
+  addEventListener("hashchange", function(){ location.reload(); });
+  var $ = function(id){ return document.getElementById(id); };
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---------- fireworks ---------- */
+  var cv = $("fx"), ctx = cv.getContext("2d"), parts = [], running = false, timer = null;
+  var COLORS = ["#F5A623","#D81B72","#FFF3D6","#FF7A3D","#8E6BFF"];
+  function size(){
+    var r = window.devicePixelRatio || 1;
+    cv.width = innerWidth * r; cv.height = innerHeight * r;
+    ctx.setTransform(r,0,0,r,0,0);
+  }
+  addEventListener("resize", size); size();
+  function burst(x, y){
+    var c = COLORS[Math.floor(Math.random()*COLORS.length)], n = 46;
+    for (var i = 0; i < n; i++){
+      var a = (Math.PI*2*i)/n, s = 1.5 + Math.random()*2.6;
+      parts.push({x:x,y:y,vx:Math.cos(a)*s,vy:Math.sin(a)*s,life:1,c:c});
+    }
+    if (!running){ running = true; requestAnimationFrame(tick); }
+  }
+  function tick(){
+    ctx.globalCompositeOperation = "destination-out";
+    ctx.fillStyle = "rgba(0,0,0,.18)";
+    ctx.fillRect(0,0,innerWidth,innerHeight);
+    ctx.globalCompositeOperation = "lighter";
+    parts = parts.filter(function(p){ return p.life > 0.02; });
+    parts.forEach(function(p){
+      p.x += p.vx; p.y += p.vy; p.vy += 0.03; p.vx *= 0.985; p.life *= 0.968;
+      ctx.globalAlpha = p.life; ctx.fillStyle = p.c;
+      ctx.beginPath(); ctx.arc(p.x, p.y, 2.2, 0, 6.283); ctx.fill();
+    });
+    ctx.globalAlpha = 1;
+    if (parts.length){ requestAnimationFrame(tick); }
+    else { running = false; ctx.clearRect(0,0,innerWidth,innerHeight); }
+  }
+  function show(){
+    burst(innerWidth*0.5, innerHeight*0.28);
+    timer = setInterval(function(){
+      burst(innerWidth*(0.15+Math.random()*0.7), innerHeight*(0.12+Math.random()*0.35));
+    }, 1500);
+  }
+
+  /* ---------- receiver ---------- */
+  if (to){
+    $("receiver").hidden = false;
+    $("rname").textContent = to;
+    document.title = "Happy Diwali, " + to + " – from " + SENDER;
+    var lit = false;
+    $("diya").addEventListener("click", function(){
+      if (lit) return;
+      lit = true;
+      document.body.classList.add("lit");
+      $("diya").setAttribute("aria-label", "Diya lit");
+      if (!reduce){ show(); if (navigator.vibrate) navigator.vibrate(30); }
+    });
+  }
+  /* ---------- creator ---------- */
+  else {
+    $("creator").hidden = false;
+    var make = function(){
+      var n = $("nameIn").value.trim().replace(/\s+/g, " ").slice(0, 40);
+      if (!n){ $("toast").textContent = "Enter a name first."; $("nameIn").focus(); return; }
+      var slug = PREFIX + n.toLowerCase().replace(/\s+/g, "-");
+      var link = base + "#" + encodeURIComponent(slug);
+      $("linkOut").value = link;
+      $("preview").href = link;
+      $("wa").href = "https://wa.me/?text=" + encodeURIComponent(
+        "Happy Diwali, " + n + "! \uD83E\uDE94 I made something for you – tap the diya to light it:\n" + link + "\n– " + SENDER);
+      $("out").hidden = false;
+      $("toast").textContent = "";
+    };
+    $("make").addEventListener("click", make);
+    $("nameIn").addEventListener("keydown", function(e){ if (e.key === "Enter") make(); });
+    $("copy").addEventListener("click", function(){
+      var v = $("linkOut").value;
+      var done = function(){ $("toast").textContent = "Link copied."; };
+      if (navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(v).then(done, function(){ $("linkOut").select(); document.execCommand("copy"); done(); });
+      } else { $("linkOut").select(); document.execCommand("copy"); done(); }
+    });
+  }
+})();
+</script>
+</body>
+</html>
